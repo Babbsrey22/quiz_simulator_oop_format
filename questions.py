@@ -4,6 +4,6 @@ class Question:
         self.options = options
         self.correct_option = correct_option
 
-    def is_correct(self, answer):
-        return answer.lower().strip() == self.correct_option.lower().strip()
+    def is_correct(self, user_answer):
+        return user_answer.lower().strip() == self.correct_option.lower().strip()
     
