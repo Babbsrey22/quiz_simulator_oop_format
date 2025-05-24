@@ -1,12 +1,11 @@
 import time
 
 class QuizCreator:
+    def __init__(self):
+        self.quiz_name = input("Enter the name of this quiz: ")
+        self.quiz_filename = f"{self.quiz_name}.txt"
+
     def create_quiz(self):
-        print("Loading QUiz Creator....\n")
-
-        quiz_name = input("Enter the name of this quiz: ")
-        quiz_filename = f"{quiz_name}.txt"
-
         quiz_questions = []
 
         while True:
@@ -15,12 +14,13 @@ class QuizCreator:
                 print("Stopping Quiz Creator....")
                 break
 
-            choice_a = input("Option a: ")
-            choice_b = input("Option b: ")
-            choice_c = input("Option c: ")
-            choice_d = input("Option d: ")
+            else:
+                choice_a = input("Option a: ")
+                choice_b = input("Option b: ")
+                choice_c = input("Option c: ")
+                choice_d = input("Option d: ")
 
-            while True:
+                while True:
                     correct_answer = input("Enter the correct option (a/b/c/d): ")
                     if correct_answer in ["a", "b", "c", "d"]:
                         break
@@ -37,11 +37,8 @@ class QuizCreator:
             )
             quiz_questions.append(quiz_content)
 
-            with open(quiz_filename, "w") as file:
-                file.write(f"Quiz name: {quiz_name}\n\n")
-                for items in quiz_questions:
-                    file.write(items)
-                    file.write("\n\n")
-            
-            time.sleep(1)
-            print("Quiz saved successfully!!!!")
+        with open(self.quiz_filename, "w") as file:
+            file.write(f"Quiz name: {self.quiz_name}\n\n")
+            for item in quiz_questions:
+                file.write(item)
+                file.write("\n")
