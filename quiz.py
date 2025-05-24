@@ -34,4 +34,4 @@ class Quiz:
             elif repeat.lower() == 'n':
                 time.sleep(1)
                 print("Something lost and never seen...")
-                continue
+                continue 
