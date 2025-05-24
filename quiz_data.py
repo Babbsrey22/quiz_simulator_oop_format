@@ -1,36 +1,31 @@
 from questions import Question
 
 class QuizData:
-    def load_quiz(self, filename):
-        with open(filename, 'r') as file:
-            content = file.read()
-
-        blocks = content.strip().split("\n\n")[1:]
+    def load_quiz(filename):
         questions = []
+        with open(filename, 'r') as file:
+            lines = file.readlines()
 
-        for block in blocks:
-            lines = block.strip().split("\n")
-            if len(lines) < 6:
-                print(block)
+        current_question = None
+        options = {}
+        correct_option = None
+
+        for line in lines:
+            line = line.strip()
+            if not line:
                 continue
-
-            quiz_data = {}
-
-            quiz_data['question'] = lines[0]
-            quiz_data['a'] = lines[1][3:].strip()
-            quiz_data['b'] = lines[2][3:].strip()
-            quiz_data['c'] = lines[3][3:].strip()
-            quiz_data['d'] = lines[4][3:].strip()
-
-            try:
-                quiz_data['answer'] = lines[5].split(": ")[1].strip()
-            except IndexError:
-                print("Malformed answer line! They're not gonna like this..." \
-                "\nOhhh... they're not gonna like this AT ALL.")
-                print(block)
+            elif line.startswith("Quiz name:"):
                 continue
-
-            questions.append(quiz_data)
+            elif line.startswith("Correct answer:"):
+                correct_option = line.split(":")[1].strip()
+                questions.append(Question(current_question, options, correct_option))
+                current_question = None
+                options = {}
+            elif line[1:3] == ") ": 
+                key = line[0]
+                value = line[3:]
+                options[key] = value
+            else:
+                current_question = line 
 
         return questions
-
