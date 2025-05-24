@@ -24,3 +24,12 @@ class Instructions:
             for idx in range(0, 20):
                 time.sleep(0.3)
                 print("THEY'RE COMING")
+            
+            repeat = input("\nReturn to main menu?\nYour selection (y/n): ")
+            if repeat.lower() == 'y':
+                time.sleep(0.8)
+                print("save me save me save me save me save me")
+                time.sleep(2)
+                return
+            elif repeat.lower() == 'n':
+                continue
