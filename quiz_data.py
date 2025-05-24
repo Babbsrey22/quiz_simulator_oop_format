@@ -27,5 +27,4 @@ class QuizData:
                 options[key] = value
             else:
                 current_question = line 
-
         return questions
