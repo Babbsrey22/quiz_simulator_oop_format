@@ -23,23 +23,26 @@ while True:
     if option == 1:
         print("Loading instructions....\n")
         time.sleep(2)
-        Instructions
+        instruction = Instructions()
+        instruction.show_instructions()
+        
     elif option == 2:
         print("Loading Quiz Creator homescreen....\n")
         time.sleep(2)
         creator = QuizCreator()
         creator.create_quiz()
+
     elif option == 3:
         print("Loading Quiz homescreen....\n")
         time.sleep(2)
-        filename = input("Enter quiz filename: ")
-        loader = QuizData
+        filename = input("Enter quiz filename with .txt (e.g. burger king foot lettuce.txt): ")
         try:
-            questions = loader.load_quiz(filename)
+            questions = QuizData.load_quiz(filename)
             quiz = Quiz(filename, questions)
             quiz.start_quiz()
         except FileNotFoundError:
             print("Nawwww file not found. Please check filename and trytrytrytry again.")
+
     elif option == 4:
         print("Exiting program.")
         time.sleep(5)
